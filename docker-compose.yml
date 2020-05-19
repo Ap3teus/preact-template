@@ -7,3 +7,9 @@ services:
     ports:
       - "1234:1234"
       - "8080:8080"
+  server:
+    build: ./server
+    volumes:
+      - ./server/:/server/
+    ports:
+      - "3000:3000"
