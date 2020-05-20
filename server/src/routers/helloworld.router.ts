@@ -7,15 +7,18 @@ export default class HelloworldRouter extends BaseRouter {
 
   constructor() {
     super();
+    console.log('new router');
     this.helloworldService = useService(HelloworldService);
   }
 
   registerRoutes() {
+    console.log('resgitering');
     this.route({
       path: '/hello',
       method: 'get',
-      handler: (ctx) => {
-        ctx.body = this.helloworldService.hello();
+      handler: async (ctx) => {
+        console.log('helloo');
+        ctx.body = await this.helloworldService.hello(ctx.state.tx);
       },
     });
   }

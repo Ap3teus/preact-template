@@ -1,5 +1,7 @@
+import { Db } from '../common/types';
+
 export default class HelloworldService {
-  hello() {
-    return 'hello worlds!';
+  async hello(tx: Db) {
+    return tx.any(`select * from foo`);
   }
 }
