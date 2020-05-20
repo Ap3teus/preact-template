@@ -2,6 +2,7 @@ version: '3'
 services:
   client:
     build: ./client
+    container_name: "${PROJECT_NAME}-client"
     volumes:
       - ./client/:/app/
     ports:
@@ -9,7 +10,20 @@ services:
       - "8080:8080"
   server:
     build: ./server
+    container_name: "${PROJECT_NAME}-server"
     volumes:
       - ./server/:/server/
     ports:
       - "3000:3000"
+  database:
+    container_name: "${PROJECT_NAME}-database"
+    image: "postgres"
+    environment:
+      # Non-production db credentials
+      - POSTGRES_USER=root
+      - POSTGRES_PASSWORD=salasana
+      - POSTGRES_DB=db
+    volumes:
+      - database-data:/var/lib/postgresql/data/
+volumes:
+  database-data:
