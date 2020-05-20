@@ -6,6 +6,7 @@
     "start": "docker-compose up",
     "db-connect": "docker-compose exec database psql db",
     "db-deploy": "docker-compose exec database sh deploy.sh",
-    "db-revert": "docker-compose exec database sh revert.sh"
+    "db-revert": "docker-compose exec database sh revert.sh",
+    "db-init": "npm run db-revert && npm run db-deploy && docker-compose exec database psql db -f ./deploy/dev.sql"
   }
 }
