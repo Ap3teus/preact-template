@@ -1,37 +1,17 @@
-import Router, { IRouterParamContext } from 'koa-router';
-import { ParameterizedContext } from 'koa';
-import { ApplicationContext } from './types';
-
-interface RouteOptions {
-  path: string | RegExp;
-  method: 'get' | 'post' | 'put' | 'delete';
-  handler: (ctx: ApplicationContext) => void | Promise<void>;
-}
+import router, { Router, Spec } from 'koa-joi-router';
 
 export default abstract class BaseRouter {
-  private router: Router;
+  private router: router.Router;
 
   constructor() {
-    this.router = new Router();
+    this.router = router();
   }
 
-  routes() {
-    return this.router.routes();
+  middleware() {
+    return this.router.middleware();
   }
 
-  allowedMethods() {
-    return this.router.allowedMethods();
-  }
-
-  abstract registerRoutes(): void;
-
-  route(options: RouteOptions) {
-    const method = this.router[options.method];
-    method.apply(this.router, ([
-      options.path,
-      (ctx: any) => {
-        options.handler(ctx);
-      },
-    ] as unknown) as Parameters<typeof method>);
+  route(route: Spec) {
+    this.router.route(route);
   }
 }

@@ -21,16 +21,12 @@ const db = c({
   password: process.env.POSTGRES_PASSWORD,
 });
 
-app.use((ctx) => {
-  ctx.state.tx = db;
-});
+app.context.tx = db;
 
 app.use(logger());
 
 instances.forEach((r) => {
-  r.registerRoutes();
-  app.use(r.routes());
-  app.use(r.allowedMethods());
+  app.use(r.middleware());
 });
 
 app.listen(3000);

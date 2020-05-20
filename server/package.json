@@ -25,6 +25,7 @@
     "@types/koa-router": "^7.4.1",
     "@types/pg-promise": "^5.4.3",
     "koa": "^2.12.0",
+    "koa-joi-router": "^6.0.2",
     "koa-logger": "^3.2.1",
     "koa-router": "^8.0.8",
     "pg-promise": "^10.5.6",
