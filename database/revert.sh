@@ -1,0 +1,1 @@
+sqitch revert db:pg:$POSTGRES_DB
