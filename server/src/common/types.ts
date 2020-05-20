@@ -1,7 +1,12 @@
 import { ParameterizedContext } from 'koa';
 import HelloworldService from '../services/helloworld.service';
+import { IDatabase } from 'pg-promise';
+import { IClient } from 'pg-promise/typescript/pg-subset';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-interface
-interface ApplicationState {}
+export type Db = IDatabase<{}, IClient>;
+
+interface ApplicationState {
+  tx: Db;
+}
 
 export type ApplicationContext = ParameterizedContext<ApplicationState>;

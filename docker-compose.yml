@@ -11,6 +11,9 @@ services:
   server:
     build: ./server
     container_name: "${PROJECT_NAME}-server"
+    env_file:
+      - ./secrets.env
+      - ./.env
     volumes:
       - ./server/:/server/
     ports:
@@ -18,11 +21,10 @@ services:
   database:
     container_name: "${PROJECT_NAME}-database"
     build: ./database
+    env_file:
+      - ./secrets.env
     environment:
-      # Non-production db credentials
-      - POSTGRES_USER=root
-      - POSTGRES_PASSWORD=salasana
-      - POSTGRES_DB=db
+      - POSTGRES_DB=${DB_NAME}
     volumes:
       - database-data:/var/lib/postgresql/data/
       - ./database/:/app/
