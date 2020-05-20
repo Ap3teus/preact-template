@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "",
   "scripts": {
-    "start": "docker-compose up"
+    "start": "docker-compose up",
+    "db-connect": "docker-compose exec database psql db"
   }
 }
