@@ -12,4 +12,4 @@ pool:
 jobs:
   - job: build_client
     steps:
-      - bash: cd client && docker build
+      - bash: cd client && docker build -t client .
