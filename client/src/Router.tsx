@@ -5,7 +5,10 @@ const AppRouter = () => (
   <Router>
     <Switch>
       <Route path="/foo">{/* <Foo /> */}</Route>
-      <Route path="/">{/* <FrontPage /> */}</Route>
+      <Route path="/">
+        <Link to="/foo">Foo</Link>
+        {/* <FrontPage /> */}
+      </Route>
     </Switch>
   </Router>
 );

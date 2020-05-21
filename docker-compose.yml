@@ -1,13 +1,17 @@
-version: '3'
+version: '3.7'
 services:
   client:
-    build: ./client
+    build:
+      context: ./client
+      target: prod
     container_name: "${PROJECT_NAME}-client"
     volumes:
       - ./client/:/app/
     ports:
+      - "80:80"
       - "1234:1234"
       - "8080:8080"
+    tty: true
   server:
     build: ./server
     container_name: "${PROJECT_NAME}-server"
