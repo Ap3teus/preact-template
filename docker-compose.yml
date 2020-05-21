@@ -3,7 +3,7 @@ services:
   client:
     build:
       context: ./client
-      target: prod
+      target: ${ENV}
     container_name: "${PROJECT_NAME}-client"
     volumes:
       - ./client/:/app/
