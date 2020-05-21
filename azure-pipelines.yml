@@ -20,5 +20,5 @@ jobs:
       runOnce:
         deploy:
           steps:
-            - bash: docker login repo.treescale.com -u $(USERNAME) $(PASSWORD)
+            - bash: docker login -u $(USERNAME) $(PASSWORD) repo.treescale.com
             - bash: docker push repo.treescale.com/Ape/preact-template
