@@ -15,6 +15,7 @@ jobs:
       - bash: cd client && docker build -t client .
   - deployment: deploy_client
     dependsOn: build_client
+    environment: Test
     strategy:
       runOnce:
         deploy:
