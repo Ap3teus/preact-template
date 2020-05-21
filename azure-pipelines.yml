@@ -13,7 +13,11 @@ jobs:
   - job: build_client
     steps:
       - bash: cd client && docker build -t client .
-  - job: deploy
-    steps:
-      - bash: docker login repo.treescale.com -u $(USERNAME) $(PASSWORD)
-      - bash: docker push repo.treescale.com/Ape/preact-template
+  - deployment: deploy_client
+    dependsOn: build_client
+    strategy:
+      runOnce:
+        deploy:
+          steps:
+            - bash: docker login repo.treescale.com -u $(USERNAME) $(PASSWORD)
+            - bash: docker push repo.treescale.com/Ape/preact-template
