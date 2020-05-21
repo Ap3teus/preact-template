@@ -12,7 +12,7 @@ pool:
 jobs:
   - job: build_client
     steps:
-      - bash: cd client && docker build -t client .
+      - bash: cd client && docker build -t repo.treescale.com/ape/preact-template .
   - deployment: deploy_client
     dependsOn: build_client
     environment: Test
