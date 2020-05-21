@@ -14,4 +14,4 @@ jobs:
     steps:
       - bash: cd client && docker build -t repo.treescale.com/ape/preact-template .
       - bash: docker login -u $(USERNAME) -p $(PASSWORD) repo.treescale.com
-      - bash: docker push repo.treescale.com/ape/preact-template
+      - bash: docker push repo.treescale.com/ape/preact-template-client
