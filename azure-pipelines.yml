@@ -6,9 +6,6 @@
 trigger:
 - master
 
-variables:
-  DB: $(DB)
-
 pool:
   vmImage: 'ubuntu-latest'
 
@@ -27,4 +24,6 @@ jobs:
     steps:
       - bash: >
           docker run --entrypoint=/bin/bash  --mount type=bind,source="$(pwd)"/database,target=/db sqitch/sqitch -c
-          "cd /db && sqitch deploy $(DB)"
+          "cd /db && sqitch deploy $(DB_URI)"
+        env:
+          DB_URI: $(DB)
