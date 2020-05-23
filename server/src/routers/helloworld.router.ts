@@ -16,7 +16,8 @@ export default class HelloworldRouter extends BaseRouter {
       path: '/hello',
       method: 'get',
       handler: async (ctx) => {
-        ctx.body = await this.helloworldService.hello(ctx.tx);
+        //ctx.body = await this.helloworldService.hello(ctx.tx);
+        ctx.body = 'hello wlrd';
       },
     });
   }
