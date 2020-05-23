@@ -13,16 +13,18 @@ CMD ["npm", "start"]
 
 FROM node:13.12.0-alpine AS prod
 
-WORKDIR /app
-COPY ./package.json .
-COPY ./package-lock.json .
-RUN npm install
-COPY . .
-RUN npm run build
-
 RUN apk add nginx
 
 COPY ./nginx.build.conf /etc/nginx/nginx.conf
+
+WORKDIR /app
+COPY ./package.json .
+COPY ./package-lock.json .
+COPY . .
+RUN npm install && \ 
+  npm run build && \
+  rm -r /app/node_modules && \
+  npm install --only=production
 
 ENTRYPOINT [ "/bin/sh", "-c" ]
 CMD ["nginx", "-g", "daemon off;"]
