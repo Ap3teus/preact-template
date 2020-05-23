@@ -24,6 +24,7 @@ jobs:
     steps:
       - bash: >
           docker run --entrypoint=/bin/bash  --mount type=bind,source="$(pwd)"/database,target=/db sqitch/sqitch -c
-          "cd /db && sqitch deploy $(DB_URI)"
+          "cd /db && sqitch deploy $(DB)"
         env:
-          DB_URI: $(DB)
+          DB: $(DB)
+        
